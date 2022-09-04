@@ -1,0 +1,27 @@
+
+\ProvidesPackage{eskakeizu}[2022/09/04]%provided by migawariw
+
+\RequirePackage{bxeepic}
+\RequirePackage{ecltree}
+\RequirePackage{xparse}
+\RequirePackage{plext}
+
+\makeatletter
+\newdimen\@midY
+\def\crank#1(#2,#3)(#4,#5){%
+        \@midY=#3\p@\advance\@midY by #5\p@\divide\@midY by 2\relax
+        \edef\@MidY{\expandafter\@RemoveDim\the\@midY}%
+        #1(#2,#3)(#2,\@MidY)(#4,\@MidY)(#4,#5)}
+
+\def\crankarrow#1(#2,#3)(#4,#5){%
+	\crank#1(#2,#3)(#4,#5)%
+	\put(#4,#5){\vector(0,-1){0}}}
+
+\def\crankrevarrow#1(#2,#3)(#4,#5){%
+	\crank#1(#2,#3)(#4,#5)%
+	\put(#2,#3){\vector(0,1){0}}}
+
+\DeclareDocumentCommand{\generatechild}{m O{\phantom{0}} O{} g}{\IfNoValueTF{#4}{\chunk{\(^{\phantom{#2}}\phantom{#3}\pbox<t>{#1}^{#2} #3\)}}{\chunk{\begin{bundle}{\({\phantom{^{#2}#3}}\pbox<t>{#1 }^{#2} #3\)}#4\end{bundle}}}}
+\DeclareDocumentCommand{\hajimenooya}{m O{\phantom{0}} O{} g}{\begin{bundle}{\({\phantom{^{#2}#3}}\pbox<t>{#1 }^{#2} #3\)}#4\end{bundle}}
+\def\kekkon{　\pbox<y>{\!=\!=\!=\!=\!}}
+\drawwith{\crank{\drawline}}
