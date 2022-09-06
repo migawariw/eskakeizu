@@ -1,0 +1,20 @@
+\documentclass[dvipdfmx,a4j]{jsarticle}
+\usepackage{eskakeizu}
+\begin{document}
+\def\g{\generatechild}
+\def\h{\hajimenooya}
+\def\d{\drawwith}
+\def\c{\crank{\drawline}}
+\def\b{\crank{\dashline{1}}}
+\h{家康}[1]{
+	\g{信康}
+	\g{秀忠}[2]{\d{\d{\d{\b}\c}\c}%
+		\g{家光}[3]
+		\g{忠長}
+		\g{正之}
+	}
+	\g{頼房}{
+		\g{光圀}
+	}
+}
+\end{document}
